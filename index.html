@@ -1,130 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Catálogo interactivo de tenis urbanos, deportivos y casuales.">
-  <title>Tenis Urbano | Encuentra tu próximo par</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="topbar">Envíos gratis en compras mayores a Bs 500 · Cambios hasta 30 días</div>
-  <header class="header">
-    <button class="icon-btn mobile-menu" id="menuButton" aria-label="Abrir menú" aria-expanded="false">☰</button>
-    <a class="logo" href="#inicio" aria-label="Tenis Urbano, inicio">TENIS<span>URBANO</span></a>
-    <nav class="nav" id="mainNav" aria-label="Navegación principal">
-      <button data-category="Todos" class="nav-link active">Todos</button>
-      <button data-category="Hombre" class="nav-link">Hombre</button>
-      <button data-category="Mujer" class="nav-link">Mujer</button>
-      <button data-category="Niños" class="nav-link">Niños</button>
-      <button data-category="Ofertas" class="nav-link nav-sale">Ofertas</button>
-    </nav>
-    <div class="header-actions">
-      <button class="icon-btn" id="searchToggle" aria-label="Buscar">⌕</button>
-      <button class="icon-btn counter-button" id="favoritesButton" aria-label="Ver favoritos">♡<span id="favoritesCount">0</span></button>
-      <button class="icon-btn counter-button" id="cartButton" aria-label="Ver carrito">🛒<span id="cartCount">0</span></button>
-    </div>
-  </header>
-
-  <main id="inicio">
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Nueva colección · 2026</p>
-        <h1>Muévete<br>con <em>estilo.</em></h1>
-        <p class="hero-text">Diseño, comodidad y actitud para acompañarte en cada paso.</p>
-        <a class="hero-cta" href="#catalogo">Explorar colección <span>→</span></a>
-      </div>
-      <div class="hero-image">
-        <img src="assets/tenis-cobalto.png" alt="Tenis blanco con detalles azules">
-        <div class="hero-label"><span>Edición limitada</span><strong>Órbita Cobalto</strong></div>
-      </div>
-    </section>
-
-    <section class="catalog" id="catalogo">
-      <div class="catalog-heading">
-        <div><p class="eyebrow">Catálogo</p><h2>Elige tu próximo par</h2></div>
-        <p id="resultsText" aria-live="polite">9 modelos disponibles</p>
-      </div>
-      <div class="controls">
-        <label class="search-box">
-          <span aria-hidden="true">⌕</span>
-          <input id="searchInput" type="search" placeholder="Buscar por nombre o estilo…" aria-label="Buscar productos">
-        </label>
-        <div class="filter-scroll" role="group" aria-label="Filtrar por estilo">
-          <button class="chip active" data-filter="Todos">Todos</button>
-          <button class="chip" data-filter="Running">Running</button>
-          <button class="chip" data-filter="Urbano">Urbano</button>
-          <button class="chip" data-filter="Casual">Casual</button>
-        </div>
-        <select id="sortSelect" class="sort" aria-label="Ordenar productos">
-          <option value="featured">Destacados</option>
-          <option value="low">Menor precio</option>
-          <option value="high">Mayor precio</option>
-        </select>
-      </div>
-      <div class="product-grid" id="productGrid"></div>
-      <div class="empty-state hidden" id="emptyState">
-        <span>⌕</span><h3>No encontramos resultados</h3><p>Prueba con otro término o cambia el filtro.</p>
-        <button class="text-button" id="clearFilters">Limpiar filtros</button>
-      </div>
-    </section>
-
-    <section class="benefits">
-      <article><span>01</span><div><strong>Envíos nacionales</strong><p>Entrega segura en todo el país.</p></div></article>
-      <article><span>02</span><div><strong>Compra protegida</strong><p>Tus datos siempre están seguros.</p></div></article>
-      <article><span>03</span><div><strong>Cambios fáciles</strong><p>Hasta 30 días para cambiar tu talla.</p></div></article>
-    </section>
-  </main>
-
-  <footer>
-    <a class="logo logo-light" href="#inicio">TENIS<span>URBANO</span></a>
-    <p>Calzado para moverte a tu manera.</p>
-    <span>© 2026 Tenis Urbano</span>
-  </footer>
-
-  <div class="overlay hidden" id="overlay"></div>
-
-  <section class="product-modal hidden" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <button class="close-button" data-close aria-label="Cerrar detalles">×</button>
-    <div class="modal-image-wrap"><img id="modalImage" src="" alt=""></div>
-    <div class="modal-info">
-      <p class="product-brand">TENIS URBANO</p>
-      <h2 id="modalTitle"></h2>
-      <div class="modal-price"><span id="modalOldPrice"></span><strong id="modalPrice"></strong><b id="modalDiscount"></b></div>
-      <p id="modalDescription" class="modal-description"></p>
-      <div class="detail-row"><span>Color</span><strong id="modalColor"></strong></div>
-      <fieldset class="size-fieldset">
-        <legend>Selecciona tu talla</legend>
-        <div class="sizes" id="sizeOptions"></div>
-      </fieldset>
-      <p class="size-error hidden" id="sizeError">Selecciona una talla para continuar.</p>
-      <div class="modal-actions">
-        <button class="favorite-large" id="modalFavorite" aria-label="Agregar a favoritos">♡</button>
-        <button class="primary-button" id="modalAdd">Agregar al carrito</button>
-      </div>
-      <ul class="detail-list"><li>Envío nacional disponible</li><li>Cambios dentro de 30 días</li><li>Pago seguro</li></ul>
-    </div>
-  </section>
-
-  <aside class="drawer" id="cartDrawer" aria-hidden="true" aria-label="Carrito de compras">
-    <div class="drawer-header"><div><p class="eyebrow">Tu selección</p><h2>Carrito</h2></div><button class="close-button" data-close aria-label="Cerrar carrito">×</button></div>
-    <div class="drawer-content" id="cartItems"></div>
-    <div class="drawer-footer">
-      <div class="total-row"><span>Total</span><strong id="cartTotal">Bs 0</strong></div>
-      <button class="primary-button" id="checkoutButton">Finalizar compra</button>
-      <small>Compra de demostración · No se procesará ningún pago</small>
-    </div>
-  </aside>
-
-  <aside class="drawer" id="favoritesDrawer" aria-hidden="true" aria-label="Productos favoritos">
-    <div class="drawer-header"><div><p class="eyebrow">Tu lista</p><h2>Favoritos</h2></div><button class="close-button" data-close aria-label="Cerrar favoritos">×</button></div>
-    <div class="drawer-content" id="favoritesItems"></div>
-  </aside>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Catálogo de Tenis Urbano" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Tenis Urbano</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
